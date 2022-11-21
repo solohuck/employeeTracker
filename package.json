@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/solohuck/employeeTracker/issues"
   },
-  "homepage": "https://github.com/solohuck/employeeTracker#readme"
+  "homepage": "https://github.com/solohuck/employeeTracker#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^9.1.4",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {}
 }
