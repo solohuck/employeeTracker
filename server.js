@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer')
 
+
 // Returns an object of some sort that will represent the refrence to the database. -- connect to db 
 const employee_db = mysql.createConnection (
     {
