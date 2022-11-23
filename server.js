@@ -1,15 +1,8 @@
-const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer')
 
-const PORT = process.env.PORT || 3001;
-const app = express(); 
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-// Returns an object of some sort that will represent the refrence to the database.
-const db = mysql.createConnection (
+// Returns an object of some sort that will represent the refrence to the database. -- connect to db 
+const employee_db = mysql.createConnection (
     {
         host: 'localhost',
         
@@ -24,17 +17,8 @@ const db = mysql.createConnection (
 );
 
 // Query database. Pass in the query as a sting 
-db.query('SELECT * FROM employees', function (err, results){
+employee_db.query('SELECT * FROM employees', function (err, results){
     console.log(results);
-});
-
-// Gives error code for incorrect request.
-app.use((req, res) => {
-    res.status(404).end();
-});
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
 });
 
 
@@ -46,7 +30,7 @@ inquirer
             message: 'Choose one of the following.',
             choices: 
         [
-            'view all departments', 
+            'view all departments', // 'SELECT * FROM all departments' 
             'view all roles', 
             'view all employees', 
             'add a department', 
@@ -55,4 +39,5 @@ inquirer
             'update an employee role'
         ]},
     ])
-   
+   // need to add .then 
+   .then( )
