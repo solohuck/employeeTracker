@@ -1,21 +1,6 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer')
-
-
-// Returns an object of some sort that will represent the refrence to the database. -- connect to db 
-const employee_db = mysql.createConnection (
-    {
-        host: 'localhost',
-        
-        user: 'root',
-
-        password: 'password',
-
-        database: 'employee_db'
-    },
-
-    console.log(`Connected to employee_db database.`)
-);
+employee_db = require(mysql.createConnection);
 
 // Query database. Pass in the query as a sting 
 employee_db.query('SELECT * FROM employees', function (err, results){
@@ -41,4 +26,31 @@ inquirer
         ]},
     ])
    // need to add .then 
-   .then( )
+   .then((response) => {
+        switch (response.optionOne) {
+            case 'view all departments':
+                viewAllDepartments();
+                break;
+            case 'view all roles':
+                viewAllRoles();
+                break;
+            case 'vire all employees':
+                viewAllEmployees();
+                break;
+            case 'add a departmet':
+                addDepartment();
+                break;
+            case 'add a role':
+                addRole();
+                break;
+            case 'add an employee':
+                addEmployee();
+                break;
+            case 'update an employee role':
+                updateEmployeeRole();
+                break;
+            case 'finished':
+                employee_db.end();
+                break;
+        }
+   })
